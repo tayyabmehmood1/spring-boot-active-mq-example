@@ -1,15 +1,10 @@
 package guru.springframework.controllers;
 
-import guru.springframework.SpringBootActiveMQApplication;
-import guru.springframework.commands.ProductForm;
-import guru.springframework.converters.ProductToProductForm;
-import guru.springframework.domain.Product;
-import guru.springframework.services.ProductService;
+import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,10 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import javax.validation.Valid;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import guru.springframework.commands.ProductForm;
+import guru.springframework.converters.ProductToProductForm;
+import guru.springframework.domain.Book;
+import guru.springframework.domain.Product;
+import guru.springframework.services.BookService;
+import guru.springframework.services.ProductService;
 
 
 /**
@@ -32,6 +29,9 @@ public class ProductController {
     private static final Logger log = LogManager.getLogger();
 
     private ProductService productService;
+    
+    private BookService bookService;
+
 
     private ProductToProductForm productToProductForm;
 
@@ -45,6 +45,11 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @Autowired
+    public void setBookService(BookService bookService) {
+        this.bookService = bookService;
+    }
+    
     @RequestMapping("/")
     public String redirToList(){
         return "redirect:/product/list";
@@ -99,5 +104,13 @@ public class ProductController {
     public String indexProduct(@PathVariable String id){
         productService.sendMessage(id);
         return "redirect:/product/show/"+id;
+    }
+    
+    @RequestMapping("/book")
+    public String book() {
+    	 Book b = new Book();
+         b.setName("C++");
+    	 bookService.saveOrUpdate(b);
+         return "product/list";
     }
 }

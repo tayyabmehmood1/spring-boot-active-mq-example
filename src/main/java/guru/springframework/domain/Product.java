@@ -17,6 +17,15 @@ public class Product {
     private String description;
     private BigDecimal price;
     private String imageUrl;
+    public String getExtra() {
+		return extra;
+	}
+
+	public void setExtra(String extra) {
+		this.extra = extra;
+	}
+
+	private String extra;
     private boolean messageReceived;
     private Integer messageCount = 0; //init to zero
 

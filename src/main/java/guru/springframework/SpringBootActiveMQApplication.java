@@ -19,6 +19,8 @@ import javax.jms.ConnectionFactory;
 public class SpringBootActiveMQApplication {
 
     public final static String PRODUCT_MESSAGE_QUEUE = "product-message-queue";
+    public final static String BOOKS_MESSAGE_QUEUE = "BooksMQ";
+
 
     @Bean
     public JmsListenerContainerFactory<?> jmsFactory(ConnectionFactory connectionFactory,

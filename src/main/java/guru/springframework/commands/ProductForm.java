@@ -11,6 +11,15 @@ public class ProductForm {
     private String description;
     private BigDecimal price;
     private String imageUrl;
+    public String getExtra() {
+		return extra;
+	}
+
+	public void setExtra(String extra) {
+		this.extra = extra;
+	}
+
+	private String extra;
 
     public Long getId() {
         return id;

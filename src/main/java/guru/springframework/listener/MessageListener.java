@@ -40,4 +40,17 @@ public class MessageListener {
         productRepository.save(product);
         log.info("Message processed...");
     }
+    
+    
+    /**
+     * This method is invoked whenever any new message is put in the queue.
+     * See {@link guru.springframework.SpringBootActiveMQApplication} for more details
+     * @param message
+     */
+    @JmsListener(destination = SpringBootActiveMQApplication.BOOKS_MESSAGE_QUEUE, containerFactory = "jmsFactory")
+    public void receiveMessageBooksMQ(String message) {
+        log.info("Received a BOOK message<" + message.length() + ">");
+       
+        log.info("Message processed successfully");
+    }
 }

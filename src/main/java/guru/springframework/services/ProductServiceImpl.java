@@ -3,6 +3,7 @@ package guru.springframework.services;
 import guru.springframework.SpringBootActiveMQApplication;
 import guru.springframework.commands.ProductForm;
 import guru.springframework.converters.ProductFormToProduct;
+import guru.springframework.domain.Book;
 import guru.springframework.domain.Product;
 import guru.springframework.repositories.ProductRepository;
 import org.slf4j.Logger;
